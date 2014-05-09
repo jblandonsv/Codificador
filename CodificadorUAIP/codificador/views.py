@@ -76,7 +76,7 @@ def archivos_usuario(request):
 		#Si NO es super usuario, se filtararan los archivos en base a las unidades permitidas
 		unidades = UnidadesPermitidas.objects.filter(user = request.user)
 		for unidad in unidades:
-			unidades_permitidas.append(unidad)
+			unidades_permitidas.append(unidad.unidades)
 		archivos_permitidos = Archivo.objects.filter(unidad_responsable__in=unidades_permitidas)
 
 	for archivo in archivos_permitidos:
