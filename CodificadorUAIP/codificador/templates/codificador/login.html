@@ -14,7 +14,6 @@
 <div align="center">
 	<table>
 		<tr>
-			<!-- <td align="right"><label for="username">Usuario</label></td> -->
 			<td>
 				{% if form.username.errors %}<p>{{forms.username.errors }}</p>{% endif %}
 				<div class="input-group margin-bottom-sm">
@@ -30,7 +29,6 @@
 			</td>
 		</tr>
 		<tr>
-			<!-- <td><label for="password">Contraseña</label></td> -->
 			{% if form.password.errors %}<p>{{forms.password.errors }}</p>{% endif %}
 			<td>
 				<div class="input-group">
@@ -45,18 +43,13 @@
 			</td>
 		</tr>
 		<tr>
-			<td align="center">
-			<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-			<label for="remember_me">Recuerdame</label></td>
-		</tr>
-		<tr>
 			<td>
 				<br /> 
 			</td>
 		</tr>
 		<tr>
 			<td align="center">
-				<input type="submit" id="_submit" name="_submit" value="Login" />
+				<button type="submit" class="btn btn-default">Log In</button>
 			</td>
 		</tr>
 	</table>

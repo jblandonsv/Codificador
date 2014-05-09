@@ -161,4 +161,4 @@ LOGGING = {
     }
 }
 
-URL_STATICOS = 'http://localhost/static'
+URL_STATICOS = 'http://localhost:82/dropbox/static'

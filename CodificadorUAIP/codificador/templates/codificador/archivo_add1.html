@@ -1,0 +1,37 @@
+archivo_add1.html{% extends 'codificador/main_login.html'%}
+{% block page_content %}
+<form action="." method="post">
+{% csrf_token %}
+{% if form.errors %} <p>Por favor corregir</p> {% endif %}
+{% if form.errors %}
+    {% for field in form %}
+        {% for ERROR  in field.errors %}
+            <p> {{ errors }} </p>
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+<b>{{message}}</b>
+{% endblock %}
+<h2>Archivo</h2>
+<div>
+    <h1>Add Archivo</h1>
+        {% csrf_token %}
+        <div>
+            {{ form.as_p }}
+        </div>
+        <fieldset>
+            <legend>Expedientes</legend>
+            {{ folio_form.management_form }}
+            {{ folio_form.non_form_errors }}
+            {% for form in folio_form %}
+                {{ form.id }}
+                <div class="inline {{ folio_form.prefix }}">
+                    {{ form.nombre.errors }}
+                    {{ form.nombre.label_tag }}
+                    {{ form.nombre }}
+                </div>
+            {% endfor %}
+        </fieldset>
+        <input type="submit" value="Add Archivo" class="submit" />
+</div>
+</form>

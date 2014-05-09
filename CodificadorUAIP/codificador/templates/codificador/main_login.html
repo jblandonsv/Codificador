@@ -10,6 +10,8 @@
 	<link rel="stylesheet" href="{{URL_STATICOS}}/aqueous/css/style-desktop.css" />
 </noscript>
 
+
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
@@ -19,14 +21,29 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
+<!-- Fontawesome.io -->
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
+<!--
 <link rel="stylesheet" href="{{URL_STATICOS}}/aqueous/css/table_style.css" />
 <link rel="stylesheet" href="{{URL_STATICOS}}/aqueous/css/menu/style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="{{URL_STATICOS}}/aqueous/css/form_styles.css" />
-<script src="{{URL_STATICOS}}/aqueous/css/5grid/jquery.js"></script>
+-->
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<!--
 <script src="{{URL_STATICOS}}/aqueous/css/5grid/init.js?use=mobile,desktop,1000px&amp;mobileUI=1&amp;mobileUI.theme=none"></script>
+-->
+
+<!-- plantilla -->
+<script src="{{URL_STATICOS}}/aqueous/css/5grid/init.js"></script>
 <!--[if IE 9]><link rel="stylesheet" href="/codificador/aqueous/style-ie9.css" /><![endif]-->
+
+<!-- añade/borra los campos dinamicamente -->
+<script type="text/javascript" src="{{URL_STATICOS}}/js/set_form.js"></script>
+
 {% endblock %}
 
 {% block body %}

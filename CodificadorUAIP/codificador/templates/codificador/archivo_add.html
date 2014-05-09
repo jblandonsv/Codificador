@@ -1,0 +1,76 @@
+{% extends 'codificador/main_login.html'%}
+{% block page_content %}
+<form action="." method="post">
+{% csrf_token %}
+{% if form.errors %} <p>Por favor corregir</p> {% endif %}
+{% if form.errors %}
+    {% for field in form %}
+        {% for ERROR  in field.errors %}
+            <p> {{ errors }} </p>
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+<b>{{message}}</b>
+{% endblock %}
+<h2>Archivo</h2>
+{{ form_start(form) }}
+<ul>
+    <li>
+        {{ form_row(form.archivo_nombre) }}
+    </li>
+    <li>
+        {{ form_row(form.archivo_unidad_responsable) }}
+    </li>
+    <li>
+        {{ form_row(form.archivo_serie) }}
+    </li>
+    <li>
+        {{ form_row(form.archivo_tipo) }}
+    </li>
+    <li>
+        <table>
+            <tr>
+                <td style="vertical-align: top;">
+                    {{ form_label(form.archivo_descripcion, 'Descripción', {'label_attr': {'style': 'valign:top; '}}) }}
+                </td>
+                <td>
+                    {{ form_row(form.archivo_descripcion) }}
+                </td>
+            </tr>
+        </table>
+    </li>
+    <li>
+        {{ form_row(form.archivo_unidades_bajo_codigo) }}
+    </li>
+    <li>
+        {{ form_row(form.archivo_fecha_actualizacion) }}
+    </li>
+    <li>
+        {{ form_row(form.archivo_codigo_referencia) }}
+    </li>
+    <li>
+        {{ form_row(form.archivo_codigo) }}
+    </li>
+    
+    <br /> <br /> <br /> <br />
+
+    <p class="subtitle">
+        Expedientes o Documentos
+    </p>
+    <li>
+        <!-- {# <ul class="preguntas" data-prototype="{{ form_widget(form.expedientes.vars.prototype, {'attr': {'class': 'contact_form'}})|e }}"> #} -->
+        <ul class="preguntas" data-prototype="{{ form_widget(form.expedientes.vars.prototype)|e }}">
+            {% for expediente in form.expedientes %}
+            {# iterate over each existing tag and render its only field: name #}
+            <li>
+                {{ form_row(expediente.expediente_nombre) }}
+            </li>
+            <li>
+                {{ form_row(expediente.expediente_tipo) }}
+            </li>
+            {% endfor %}
+        </ul>
+    </li>
+</ul>
+{{ form_end(form) }}
+{% endblock %}
