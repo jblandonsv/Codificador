@@ -118,7 +118,7 @@ class ArchivoCreateView(CreateView):
 		#instruction_form = InstructionFormSet()
 		return self.render_to_response(
 			self.get_context_data(form=form,
-									folio_form=folio_form,))
+									folio_form=folio_form,URL_STATICOS=settings.URL_STATICOS,))
 									#instruction_form=instruction_form))
 
 	def post(self, request, *args, **kwargs):
@@ -156,4 +156,4 @@ class ArchivoCreateView(CreateView):
 		"""
 		return self.render_to_response(
 		self.get_context_data(form=form,
-								folio_form=folio_form,))
+								folio_form=folio_form,URL_STATICOS=settings.URL_STATICOS,))
