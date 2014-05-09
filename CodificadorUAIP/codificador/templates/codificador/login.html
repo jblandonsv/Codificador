@@ -1,0 +1,58 @@
+{% extends 'codificador/main_login.html'%}
+{% block page_content %}
+<form action="." method="post">
+{% csrf_token %}
+{% if form.errors %} <p>Por favor corregir</p> {% endif %}
+{% if form.errors %}
+    {% for field in form %}
+        {% for ERROR  in field.errors %}
+            <p> {{ errors }} </p>
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+<b>{{message}}</b>
+<div align="center">
+	<table>
+		<tr>
+			<!-- <td align="right"><label for="username">Usuario</label></td> -->
+			<td>
+				{% if form.username.errors %}<p>{{forms.username.errors }}</p>{% endif %}
+				<input type="text" id="username" name="_username" value="" placeholder="Usuario" autofocus="true" required="required" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<br /> 
+			</td>
+		</tr>
+		<tr>
+			<!-- <td><label for="password">Contraseña</label></td> -->
+			{% if form.password.errors %}<p>{{forms.password.errors }}</p>{% endif %}
+			<td>
+				<input type="password" id="password" name="_password" value="" placeholder="Contraseña" required="required" />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<br /> 
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+			<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+			<label for="remember_me">Recuerdame</label></td>
+		</tr>
+		<tr>
+			<td>
+				<br /> 
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+				<input type="submit" id="_submit" name="_submit" value="Login" />
+			</td>
+		</tr>
+	</table>
+</div>
+</form>
+{% endblock %}

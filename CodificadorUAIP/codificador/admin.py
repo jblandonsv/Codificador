@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.contrib import admin
 from codificador.models import Unidad, Serie, Tipo, Archivo, Dependencia, Correlativo,folio,TipoInformacion,ArchivoHistorico,FolioHistorico,TipoVigencia,EstadoExpediente,UnidadesPermitidas
 

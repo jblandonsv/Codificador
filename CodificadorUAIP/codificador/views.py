@@ -13,9 +13,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.views.generic import CreateView
 
 def entrar(request):
+	print 'entro'
 	if request.user.is_authenticated():
 		return HttpResponseRedirect('inicio')
 	if request.method == 'POST':
+		print 'esta haciendo post'
 		#siguiente = request.GET.get('next')
 		#print 'valor de next = ' + str(siguiente)
 		form = LoginForm(request.POST)
