@@ -1,4 +1,4 @@
-archivo_add1.html{% extends 'codificador/main_login.html'%}
+{% extends 'codificador/main_login.html'%}
 {% block page_content %}
 <form action="." method="post">
 {% csrf_token %}
@@ -11,11 +11,9 @@ archivo_add1.html{% extends 'codificador/main_login.html'%}
     {% endfor %}
 {% endif %}
 <b>{{message}}</b>
-{% endblock %}
 <h2>Archivo</h2>
 <div>
     <h1>Add Archivo</h1>
-        {% csrf_token %}
         <div>
             {{ form.as_p }}
         </div>
@@ -35,3 +33,4 @@ archivo_add1.html{% extends 'codificador/main_login.html'%}
         <input type="submit" value="Add Archivo" class="submit" />
 </div>
 </form>
+{% endblock %}
