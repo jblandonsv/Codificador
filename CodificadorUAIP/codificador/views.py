@@ -6,7 +6,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import RequestContext
 from codificador.forms import LoginForm, ArchivoForm,FoliosFormset
 
-from codificador.models import Archivo, folio, Serie, Tipo, TipoInformacion, TipoVigencia
+from codificador.models import Archivo, folio, Serie, Tipo, TipoInformacion, TipoVigencia,UnidadesPermitidas
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
@@ -71,21 +71,25 @@ def archivos_usuario(request):
 	#TODO - Filtrar listado de archivos en base a las unidades que tiene permisos un usuario
 	if request.user.is_superuser:
 		#Si es un super usuario, podra ver todos los archivos
-		archivos_permitidos = Archivo.objects.all()
+		archivos_permitidos = list(Archivo.objects.all())
 	else:
 		#Si NO es super usuario, se filtararan los archivos en base a las unidades permitidas
 		unidades = UnidadesPermitidas.objects.filter(user = request.user)
 		for unidad in unidades:
-			unidades_permitidas.append(unidad)
-		archivos_permitidos = Archivo.objects.filter(unidad_responsable__in=unidades_permitidas)
+			unidades_permitidas.append(unidad.unidades)
+		archivos_permitidos = list(Archivo.objects.filter(unidad_responsable__in=unidades_permitidas))
 
 	for archivo in archivos_permitidos:
-		print archivo.tipo.nombre
+		#print archivo.tipo.nombre
+		tipo_nombre = "Sin Tipo"
+		if not archivo.tipo == None:
+			tipo_nombre = archivo.tipo.nombre
+			
 		data.append({'nombre':archivo.nombre,
 			'dependencia':archivo.dependencia.nombre,
 			'unidad_responsable':archivo.unidad_responsable.nombre,
 			'serie':archivo.serie.nombre,
-			#'tipo':archivo.tipo.nombre,
+			'tipo':tipo_nombre,
 			'descripcion':archivo.descripcion,
 			'unidades_bajo_codigo':archivo.unidades_bajo_codigo,
 			'fecha_actualizacion':str(archivo.fecha_actualizacion),
