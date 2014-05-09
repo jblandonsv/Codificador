@@ -108,6 +108,10 @@ class Archivo(models.Model):
 	def __unicode__(self):
 		return self.nombre
 
+	def tipo_nombre(self):
+		nombre = Tipo.objects.filter(id=self.tipo)[0].nombre
+		return nombre
+
 	def save(self,*args,**kwargs): 
 		#self.tipo=Tipo()
 		#print 'Esta intentando guardar algo'
