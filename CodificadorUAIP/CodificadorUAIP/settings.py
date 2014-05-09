@@ -161,4 +161,4 @@ LOGGING = {
     }
 }
 
-URL_STATICOS = 'http://localhost'
+URL_STATICOS = 'http://localhost/static'
