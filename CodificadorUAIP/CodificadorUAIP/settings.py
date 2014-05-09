@@ -160,3 +160,5 @@ LOGGING = {
         },
     }
 }
+
+URL_STATICOS = 'http://localhost'

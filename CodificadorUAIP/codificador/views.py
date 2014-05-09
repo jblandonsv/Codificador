@@ -11,6 +11,7 @@ from codificador.models import Archivo, folio, Serie, Tipo, TipoInformacion, Tip
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import CreateView
+from django.conf import settings
 
 def entrar(request):
 	print 'entro'
@@ -27,17 +28,17 @@ def entrar(request):
 			usuario = authenticate(username=username,password=password)
 			if usuario is not None:
 				login(request,usuario)
-				context = {'prueba':'mensaje'}
+				context = {'prueba':'mensaje','URL_STATICOS':settings.URL_STATICOS}
 				#return render_to_response('alcaldias/principal.html',context,context_instance=RequestContext(request))
 				return HttpResponseRedirect('inicio')
 			else:
 				form = LoginForm()
-				return  render_to_response('codificador/login.html',{'form':form,'message':'Usuario o Password Incorrectos'},context_instance=RequestContext(request)) 
+				return  render_to_response('codificador/login.html',{'form':form,'message':'Usuario o Password Incorrectos','URL_STATICOS':settings.URL_STATICOS},context_instance=RequestContext(request)) 
 		else:
-			return render_to_response('codificador/login.html',{'form':form},context_instance=RequestContext(request))
+			return render_to_response('codificador/login.html',{'form':form,'URL_STATICOS':settings.URL_STATICOS},context_instance=RequestContext(request))
 	else:
 		form = LoginForm()
-		context = {'form':form}
+		context = {'form':form,'URL_STATICOS':settings.URL_STATICOS}
 		return render_to_response('codificador/login.html',context,context_instance=RequestContext(request))
 
 #Vistas para uso de catalogos
