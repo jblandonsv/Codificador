@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multiformset Demo</title>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://localhost/jquery.formset.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".inline.{{ folio_form.prefix }}").formset({
+                prefix: "{{ ingredient_form.prefix }}",
+            })
+
+        })
+    </script>
+</head>
+
+<body>
+    <div>
+        <h1>Add Archivo</h1>
+        <form action="." method="post">
+            {% csrf_token %}
+            <div>
+                {{ form.as_p }}
+            </div>
+            <fieldset>
+                <legend>Expedientes</legend>
+                {{ folio_form.management_form }}
+                {{ folio_form.non_form_errors }}
+                {% for form in folio_form %}
+                    {{ form.id }}
+                    <div class="inline {{ folio_form.prefix }}">
+                        {{ form.nombre.errors }}
+                        {{ form.nombre.label_tag }}
+                        {{ form.nombre }}
+                    </div>
+                {% endfor %}
+            </fieldset>
+            <input type="submit" value="Add Archivo" class="submit" />
+        </form>
+    </div>
+</body>
+</html>
