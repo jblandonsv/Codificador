@@ -59,10 +59,38 @@ def obtener_series(request):
 	response = HttpResponse(json.dumps({'series':data}),content_type="application/json; charset=utf8")
 	return response
 
-@login_required
+@login_required(login_url='entrar')
 def archivos_usuario(request):
 	usuario = request.user.username
-	response = HttpResponse(json.dumps({'usuario':usuario}),content_type="application/json; charset=utf8")
+	archivos_permitidos = None
+	unidades_permitidas = list()
+	data = list()
+	#TODO - Filtrar listado de archivos en base a las unidades que tiene permisos un usuario
+	if request.user.is_superuser:
+		#Si es un super usuario, podra ver todos los archivos
+		archivos_permitidos = Archivo.objects.all()
+	else:
+		#Si NO es super usuario, se filtararan los archivos en base a las unidades permitidas
+		unidades = UnidadesPermitidas.objects.filter(user = request.user)
+		for unidad in unidades:
+			unidades_permitidas.append(unidad)
+		archivos_permitidos = Archivo.objects.filter(unidad_responsable__in=unidades_permitidas)
+
+	for archivo in archivos_permitidos:
+		print archivo.tipo.nombre
+		data.append({'nombre':archivo.nombre,
+			'dependencia':archivo.dependencia.nombre,
+			'unidad_responsable':archivo.unidad_responsable.nombre,
+			'serie':archivo.serie.nombre,
+			#'tipo':archivo.tipo.nombre,
+			'descripcion':archivo.descripcion,
+			'unidades_bajo_codigo':archivo.unidades_bajo_codigo,
+			'fecha_actualizacion':str(archivo.fecha_actualizacion),
+			'codigo_referencia':archivo.codigo_referencia,
+			'codigo':archivo.codigo})
+
+	response = HttpResponse(json.dumps({'usuario':usuario,'archivos':data}),content_type="application/json; charset=utf8")
+
 	return response
 
 class ArchivoCreateView(CreateView):
