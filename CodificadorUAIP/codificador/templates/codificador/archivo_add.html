@@ -1,6 +1,35 @@
-{% extends 'codificador/main_login.html'%}
+{% extends 'codificador/main_archivo.html'%}
+{% block javascripts %}
+<script type="text/javascript" src="{{URL_STATICOS}}/js/jquery-2.0.3.js"></script>
+<script type="text/javascript" src="{{URL_STATICOS}}/js/set_form.js"></script>
+
+
+<script>
+    
+    $(document).ready(function() {
+        
+        //$("#id_{{ form.dependencia.html_name }}").addClass("required");
+        
+
+        $("#id_{{ form.nombre.html_name }}").prop("required", true);
+        $("#id_{{ form.dependencia.html_name }}").prop("required", true);
+        $("#id_{{ form.serie.html_name }}").prop("required", true);
+        $("#id_{{ form.serie.html_name }}").prop("required", true);
+        $("#id_{{ form.tipo.html_name }}").prop("required", true);
+        $("#id_{{ form.descripcion.html_name }}").prop("required", true);
+        $("#id_{{ form.unidades_bajo_codigo.html_name }}").prop("required", true);
+        $("#id_{{ form.fecha_actualizacion.html_name }}").prop("required", true);
+        $("#id_{{ form.codigo_referencia.html_name }}").prop("required", true);
+        $("#id_{{ form.codigo.html_name }}").prop("required", true);
+        $("#id_{{ form.correlativo_sistema.html_name }}").prop("required", true);
+        
+    });
+    
+</script>
+{% endblock %}
 {% block page_content %}
-<form action="." method="post">
+<h2>Archivo</h2>
+<form action="." method="post" class="contact_form">
 {% csrf_token %}
 {% if form.errors %} <p>Por favor corregir</p> {% endif %}
 {% if form.errors %}
@@ -10,67 +39,115 @@
         {% endfor %}
     {% endfor %}
 {% endif %}
-<b>{{message}}</b>
-{% endblock %}
-<h2>Archivo</h2>
-{{ form_start(form) }}
+<p>{{message}}</p>
+
 <ul>
     <li>
-        {{ form_row(form.archivo_nombre) }}
+        {# {{ form_row(form.archivo_nombre) }} #}
+        {# {{ form_label(form.nombre, 'Descripción', {'label_attr': {'style': 'valign:top; '}}) }} #}
+        {{ form.as_ul }}
+        <!--
+        <label for="id_{{ form.nombre.html_name }}" class="required">Nombre</label>
+        <input type="text" id="id_{{ form.nombre.html_name }}" name="{{ form.nombre.html_name }}" required="required" value="" />
+        -->
     </li>
     <li>
-        {{ form_row(form.archivo_unidad_responsable) }}
+        {# {{ form.nombre }} #}
     </li>
     <li>
-        {{ form_row(form.archivo_serie) }}
+        <!-- <label for="id_{{ form.dependencia.html_name }}" class="required">Dependencia</label> -->
+        <!-- <select id="id_{{ form.dependencia.html_name }}" name="{{ form.dependencia.html_name }}" required="required">
+        </select>-->
+        {# {{ form.dependencia }} #}
+    <li>
+       {# {{ form_row(form.archivo_unidad_responsable) }} #}
+    </li>
+
+    <li>
+       {# {{ form_row(form.archivo_serie) }} #}
     </li>
     <li>
-        {{ form_row(form.archivo_tipo) }}
+       {# {{ form_row(form.archivo_tipo) }} #}
     </li>
     <li>
         <table>
             <tr>
                 <td style="vertical-align: top;">
-                    {{ form_label(form.archivo_descripcion, 'Descripción', {'label_attr': {'style': 'valign:top; '}}) }}
+                    {# {{ form_label(form.archivo_descripcion, 'Descripción', {'label_attr': {'style': 'valign:top; '}}) }} #}
                 </td>
                 <td>
-                    {{ form_row(form.archivo_descripcion) }}
+                    {# {{ form_row(form.archivo_descripcion) }} #}
                 </td>
             </tr>
         </table>
     </li>
     <li>
-        {{ form_row(form.archivo_unidades_bajo_codigo) }}
+        {# {{ form_row(form.archivo_unidades_bajo_codigo) }} #}
     </li>
     <li>
-        {{ form_row(form.archivo_fecha_actualizacion) }}
+        {# {{ form_row(form.archivo_fecha_actualizacion) }} #}
     </li>
     <li>
-        {{ form_row(form.archivo_codigo_referencia) }}
+        {# {{ form_row(form.archivo_codigo_referencia) }} #}
     </li>
     <li>
-        {{ form_row(form.archivo_codigo) }}
+        {# {{ form_row(form.archivo_codigo) }} #}
     </li>
+
     
+    <!-- 
     <br /> <br /> <br /> <br />
 
     <p class="subtitle">
         Expedientes o Documentos
     </p>
     <li>
-        <!-- {# <ul class="preguntas" data-prototype="{{ form_widget(form.expedientes.vars.prototype, {'attr': {'class': 'contact_form'}})|e }}"> #} -->
-        <ul class="preguntas" data-prototype="{{ form_widget(form.expedientes.vars.prototype)|e }}">
-            {% for expediente in form.expedientes %}
+        <ul class="preguntas" data-prototype="{# {{ form_widget(form.expedientes.vars.prototype)|e }} #}">
+            {% for expediente in form.expedientes %} #}
             {# iterate over each existing tag and render its only field: name #}
             <li>
-                {{ form_row(expediente.expediente_nombre) }}
+                {# {{ form_row(expediente.expediente_nombre) }} #}
             </li>
             <li>
-                {{ form_row(expediente.expediente_tipo) }}
+                {# {{ form_row(expediente.expediente_tipo) }} #}
             </li>
             {% endfor %}
         </ul>
     </li>
+    -->
+    <li>
+        <button type="submit" value="Add Archivo" class="submit" />
+    </li>
 </ul>
-{{ form_end(form) }}
-{% endblock %}
+</form>
+{% endblock %} 
+
+<!-- 
+{#
+<div>
+    <h1>Add Archivo</h1>
+        <div>
+
+            {# {{ form.as_p }} #}
+            {# {{ {{ form_widget(form.nombre, { 'attr': {'class': 'foo'} }) }} #}
+        </div>
+        <p>HOLA MUNDO</p>
+        {# {{ form_widget(form, { 'attr': {'class': 'foo'} }) }} #}
+        <fieldset>
+            <legend>Expedientes</legend>
+            {# {{ folio_form.management_form }} #}
+            {# {{ folio_form.non_form_errors }} #}
+            {% for form in folio_form %}
+                {#  {{ form.id }} #}
+                <div class="{# inline {{ folio_form.prefix }} #}">
+                    {# {{ form.nombre.errors }} #}
+                    {# {{ form.nombre.label_tag }} #}
+                    {# {{ form.nombre }} #}
+                </div>
+            {% endfor %}
+        </fieldset>
+        <input type="submit" value="Add Archivo" class="submit" />
+</div>
+#}
+-->
+

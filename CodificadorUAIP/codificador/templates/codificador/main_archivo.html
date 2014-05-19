@@ -9,55 +9,30 @@
 	<link rel="stylesheet" href="{{URL_STATICOS}}/aqueous/css/style.css" />
 	<link rel="stylesheet" href="{{URL_STATICOS}}/aqueous/css/style-desktop.css" />
 </noscript>
-
-
-
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-
-<!-- jQuery CSS -->
-<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-
-<!-- Fontawesome.io -->
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-
-
-
-<!-- aqueous-->
 <link rel="stylesheet" href="{{URL_STATICOS}}/aqueous/css/table_style.css" />
 <link rel="stylesheet" href="{{URL_STATICOS}}/aqueous/css/menu/style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="{{URL_STATICOS}}/aqueous/css/form_styles.css" />
-<script src="{{URL_STATICOS}}/aqueous/css/5grid/jquery.js')}}"></script>
-
-<!-- jQuery -->
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
-
-<!-- jQuery UI -->
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-
-
-
-
-<!--
+<script src="{{URL_STATICOS}}/aqueous/css/5grid/jquery.js"></script>
 <script src="{{URL_STATICOS}}/aqueous/css/5grid/init.js?use=mobile,desktop,1000px&amp;mobileUI=1&amp;mobileUI.theme=none"></script>
--->
-
-<!-- plantilla -->
-<script src="{{URL_STATICOS}}/aqueous/css/5grid/init.js?use=mobile,desktop,1000px&amp;mobileUI=1&amp;mobileUI.theme=none"></script>
-<!--[if IE 9]><link rel="stylesheet" href="/codificador/aqueous/style-ie9.css" /><![endif]-->
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
+<!--[if IE 9]><link rel="stylesheet" href="{{URL_STATICOS}}/aqueous/style-ie9.css" /><![endif]-->
+{% include 'autocomplete_light/static.html' %}
 {% endblock %}
 
 {% block body %}
-<!-- NO MENU -->
+<!-- menu nuevo -->
+	<ul id="nav_new">
+		<div class="table">
+		<li>
+			<a href="/codificador/archivo/add" >Archivos</a>
+		</li>
+		<li>
+			<a href="/admin/logout/">Log out</a>
+		</li>
+		</div>
+	</ul>
+
+<!-- Fin menu nuevo -->
+
 <div id="header-wrapper">
 	<header id="header">
 		<div class="5grid-layout">
@@ -88,51 +63,7 @@
 					<div class="row">
 						<div class="12u">
 							<div class="row">
-								<!--
-								<div class="4u">
-								<section id="sidebar">
-								<ul class="style1">
-								<li class="first">
-								<p ><a href="{# {{ path('daciproveedor_new')}} #}" class="subtitle">Proveedores</a></p>
-								</li>
-								<li>
-								<p><a href="{# {{ path('dacicontratos_main')}} #}" class="subtitle">Contratos</a></p>
-								</li>
-								<li>
-								<p><a href="{# {{ path('dacicontratos_unidad_main')}} #}" class="subtitle">Unidades</a></p>
-								</li>
-								<li>
-								<p><a href="{# {{ path('dacicontratos_conjuntos')}} #}" class="subtitle">Set de Preguntas</a></p>
-								</li>
-								<li>
-								<p><a href="{# {{ path('dacicontratos_contacto_main')}} #}" class="subtitle">Evaluadores</a></p>
-								</li>
-
-								<li>
-								<p><a href="{# {{ path('dacicontratos_eval_main')}} #}" class="subtitle">Evaluaciones</a></p>
-								</li>
-								<li>
-								<h2>---Reportes---</h2>
-								</li>
-								<li>
-								<p><a href="{# {{ path('dacicontratos_report_formA')}} #}" class="subtitle">Reporte Proveedor</a></p>
-								</li>
-								<li>
-								<p><a href="{# {{ path('dacicontratos_report_formB')}} #}" class="subtitle">Reporte Anual</a></p>
-								</li>
-								<li>
-								<p><a href="{# {{ path('dacicontratos_reportWordTrimestre')}} #}" class="subtitle">Informe Trimestral</a></p>
-								</li>
-								<li>
-								<p><a href="{# {{ path('dacicontratos_reportWordAnio')}} #}" class="subtitle">Informe Anual</a></p>
-								</li>
-
-								</ul>
-								{# Bienvenido {{ app.user.username }} #}
-								{# <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a> #}
-								</section>
-								</div>
-								-->
+								<!-- ... -->
 								<div class="" style="width:100%; padding:0 20px;">
 									<section id="content">
 										{% block page_content %} Contenido

@@ -1,34 +1,28 @@
 {% extends 'codificador/main_login.html'%}
 {% block page_content %}
-<form action="." method="post">
-{% csrf_token %}
-{% if form.errors %} <p>Por favor corregir</p> {% endif %}
-{% if form.errors %}
-    {% for field in form %}
-        {% for ERROR  in field.errors %}
-            <p> {{ errors }} </p>
-        {% endfor %}
-    {% endfor %}
-{% endif %}
-<b>{{message}}</b>
-
 <div class="container">
 	<div class="row">
-		
-		<div class="col-md-4 "></div>
-
-		<div class="col-md-3">
-		<!-- <div class="col-md-12"> -->
-			<div class="panel panel-default">
+		<div class="col-md-4 col-md-offset-4">
+			<div class="panel panel-info">
 				<div class="panel-heading">
 					<strong>Login</strong>
 				</div>
 				<div class="panel-body">
+					<form action="." method="post">
+						{% csrf_token %}
+						{% if form.errors %} <p>Por favor corregir</p> {% endif %}
+						{% if form.errors %}
+						    {% for field in form %}
+						        {% for ERROR  in field.errors %}
+						            <p> {{ errors }} </p>
+						        {% endfor %}
+						    {% endfor %}
+						{% endif %}
+						<b>{{message}}</b>
 					  <div class="form-group">							   
 						<div class="input-group margin-bottom-sm">
 							  {% if form.username.errors %}<p>{{forms.username.errors }}</p>{% endif %}
 							  <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-							  
 							  <input class="form-control" type="text" id="username" name="username" value="" placeholder="Usuario" autofocus="true" required="required">
 						</div>
 
@@ -52,15 +46,11 @@
 					  -->
 					  
 					  <button type="submit" class="btn btn-default">Submit</button>
-					
+					</form>
 				</div> <!-- END panel body -->
 			</div>
 		</div>
-		
-		<div class="col-md-5"></div>
-		
 	</div> <!-- END row -->
-</div>
+</div> <!-- END container -->
 
-</form>
 {% endblock %}

@@ -101,7 +101,7 @@ def archivos_usuario(request):
 	return response
 
 class ArchivoCreateView(CreateView):
-	template_name = 'codificador/archivo_add1.html'
+	template_name = 'codificador/archivo_add.html'
 	model = Archivo
 	form_class = ArchivoForm
 	success_url = 'exito/'

@@ -1,4 +1,4 @@
-{% extends 'codificador/main_login.html'%}
+{% extends 'codificador/main.html'%}
 {% block page_content %}
 <form action="." method="post">
 {% csrf_token %}
@@ -11,26 +11,66 @@
     {% endfor %}
 {% endif %}
 <b>{{message}}</b>
+{% endblock %}
 <h2>Archivo</h2>
-<div>
-    <h1>Add Archivo</h1>
-        <div>
-            {{ form.as_p }}
-        </div>
-        <fieldset>
-            <legend>Expedientes</legend>
-            {{ folio_form.management_form }}
-            {{ folio_form.non_form_errors }}
-            {% for form in folio_form %}
-                {{ form.id }}
-                <div class="inline {{ folio_form.prefix }}">
-                    {{ form.nombre.errors }}
-                    {{ form.nombre.label_tag }}
-                    {{ form.nombre }}
-                </div>
+{{ form_start(form) }}
+<ul>
+    <li>
+        {{ form_row(form.nombre) }}
+    </li>
+    <li>
+        {{ form_row(form.unidad_responsable) }}
+    </li>
+    <li>
+        {{ form_row(form.serie) }}
+    </li>
+    <li>
+        {{ form_row(form.tipo) }}
+    </li>
+    <li>
+        <table>
+            <tr>
+                <td style="vertical-align: top;">
+                    {{ form_label(form.descripcion, 'Descripción', {'label_attr': {'style': 'valign:top; '}}) }}
+                </td>
+                <td>
+                    {{ form_row(form.descripcion) }}
+                </td>
+            </tr>
+        </table>
+    </li>
+    <li>
+        {{ form_row(form.unidades_bajo_codigo) }}
+    </li>
+    <li>
+        {{ form_row(form.fecha_actualizacion) }}
+    </li>
+    <li>
+        {{ form_row(form.codigo_referencia) }}
+    </li>
+    <li>
+        {{ form_row(form.codigo) }}
+    </li>
+    
+    <br /> <br /> <br /> <br />
+
+    <p class="subtitle">
+        Expedientes o Documentos
+    </p>
+    <li>
+        <!-- {# <ul class="preguntas" data-prototype="{{ form_widget(form.expedientes.vars.prototype, {'attr': {'class': 'contact_form'}})|e }}"> #} -->
+        <ul class="preguntas" data-prototype="{{ form_widget(form.expedientes.vars.prototype)|e }}">
+            {% for expediente in form.expedientes %}
+            {# iterate over each existing tag and render its only field: name #}
+            <li>
+                {{ form_row(expediente.expediente_nombre) }}
+            </li>
+            <li>
+                {{ form_row(expediente.expediente_tipo) }}
+            </li>
             {% endfor %}
-        </fieldset>
-        <input type="submit" value="Add Archivo" class="submit" />
-</div>
-</form>
+        </ul>
+    </li>
+</ul>
+{{ form_end(form) }}
 {% endblock %}
